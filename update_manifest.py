@@ -3,6 +3,10 @@ import xml.etree.ElementTree as ET
 from datetime import datetime
 
 def update_manifest(extension, manifest, version):
+    print(f"Extension: {extension}, Manifest: {manifest}, Version: {version}")
+    # Rest of your code...
+
+def update_manifest(extension, manifest, version):
     # Define the current date and year
     current_date = datetime.now().strftime('%Y-%m-%d')
     current_year = datetime.now().year
