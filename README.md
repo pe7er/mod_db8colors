@@ -1,15 +1,6 @@
 # mod_db8colors
 Joomla 4/5 admin module to document the used colors
 
-## Available Languages
-- Dutch (nl-NL)
-- English (en-GB)
-- French (fr-FR)
-- German (de-DE)
-- Italian (it-IT)
-- Portuguese (pt-PT)
-- Spanish (es-ES)
-
 ## Installation
 Install like any other Joomla 4 or Joomla 4 module.
 
