@@ -8,7 +8,7 @@ def update_manifest(extension, manifest, version):
     current_year = datetime.now().year
 
     # Construct the path to the manifest file
-    manifest_path = f"{extension}/{manifest}"
+    manifest_path = f"../{extension}/{manifest}"
     tree = ET.parse(manifest_path)
     root = tree.getroot()
 
