@@ -2,6 +2,7 @@ name: Create Release
 
 permissions:
   contents: write
+  issues: write
 
 on:
   push:
@@ -27,7 +28,7 @@ jobs:
           python-version: '3.x'
 
       - name: Update module's XML manifest
-        run: python update_manifest.py ${{ env.EXTENSION }} mod_db8colors.xml ${{ env.VERSION }}
+        run: python update_manifest.py ${{ env.EXTENSION }} ${{ env.MANIFEST }} ${{ env.VERSION }}
 
       - name: Zip the module folder
         run: zip -r ${{ env.EXTENSION }}-${{ env.VERSION }}.zip ${{ env.EXTENSION }}/
@@ -38,19 +39,31 @@ jobs:
           SHA512=$(cat ${{ env.EXTENSION }}-${{ env.VERSION }}.zip.sha512 | cut -d' ' -f1)
           echo "SHA512=$SHA512" >> $GITHUB_ENV
 
-      - name: Upload ZIP as artifact
-        uses: actions/upload-artifact@v3
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: ${{ env.EXTENSION }}-${{ env.VERSION }}.zip
-          path: ${{ env.EXTENSION }}-${{ env.VERSION }}.zip
+          tag_name: ${{ env.VERSION }}
+          release_name: Release ${{ env.VERSION }}
+          draft: false
+          prerelease: false
 
-      - name: Update update.xml
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./${{ env.EXTENSION }}-${{ env.VERSION }}.zip
+          asset_name: ${{ env.EXTENSION }}-${{ env.VERSION }}.zip
+          asset_content_type: application/zip
+
+      - name: Update update.xml and commit changes
         run: |
           DOWNLOAD_URL="https://github.com/pe7er/${{ env.EXTENSION }}/releases/download/${{ env.VERSION }}/${{ env.EXTENSION }}-${{ env.VERSION }}.zip"
           python update_update_xml.py ${{ env.VERSION }} $DOWNLOAD_URL ${{ env.SHA512 }}
-
-      - name: Commit and push changes
-        run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add update.xml ${{ env.EXTENSION }}/${{ env.MANIFEST }}
