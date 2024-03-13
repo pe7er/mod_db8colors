@@ -34,7 +34,7 @@ jobs:
           python-version: '3.x'
 
       - name: Update module's XML manifest
-        run: python update_manifest.py ${{ env.EXTENSION }} ${{ env.MANIFEST }} ${{ env.VERSION }}
+        run: python update_manifest.py ${{ env.EXTENSION }}/${{ env.MANIFEST }} ${{ env.VERSION }}
 
       - name: Zip the module folder
         run: |
