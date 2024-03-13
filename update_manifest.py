@@ -1,24 +1,8 @@
-import os
+import sys
 import xml.etree.ElementTree as ET
 from datetime import datetime
 
-def load_env_variables(env_path='.env'):
-    """Load environment variables from a .env file."""
-    if os.path.exists(env_path):
-        with open(env_path) as f:
-            for line in f:
-                if line.startswith('#') or '=' not in line:
-                    continue
-                key, value = line.strip().split('=', 1)
-                os.environ[key] = value
-
-def update_manifest(manifest_path):
-    # Load environment variables, including VERSION from .env
-    load_env_variables()
-
-    # Get version from environment variables
-    version = os.getenv('VERSION', '1.0.0')  # Default to '1.0.0' if not found
-
+def update_manifest(manifest_path, version):
     # Define the current date
     current_date = datetime.now().strftime('%Y-%m-%d')
 
@@ -40,9 +24,10 @@ def update_manifest(manifest_path):
     tree.write(manifest_path)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: update_manifest.py <manifest_path>")
+    if len(sys.argv) != 3:
+        print("Usage: update_manifest.py <manifest_path> <version>")
         sys.exit(1)
 
     manifest_path = sys.argv[1]
-    update_manifest(manifest_path)
+    version = sys.argv[2]
+    update_manifest(manifest_path, version)
