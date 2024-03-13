@@ -22,6 +22,12 @@ jobs:
             echo "$key=$value" >> $GITHUB_ENV;
           done < .env
 
+      - name: Debug environment variables
+        run: |
+          echo "VERSION=${{ env.VERSION }}"
+          echo "EXTENSION=${{ env.EXTENSION }}"
+          echo "MANIFEST=${{ env.MANIFEST }}"
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
