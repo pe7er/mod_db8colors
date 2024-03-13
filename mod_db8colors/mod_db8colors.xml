@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <extension type="module" client="administrator" method="upgrade">
     <name>mod_db8colors</name>
     <author>Peter Martin</author>
-    <creationDate>{{date}}</creationDate>
-    <version>{{version}}</version>
-    <copyright>Copyright (C) 2005-{{year}} by Peter Martin. All rights reserved.</copyright>
+    <creationDate>2024-03-13</creationDate>
+    <version>1.0.1</version>
+    <copyright>Copyright (C) 2005-2024 by Peter Martin. All rights reserved.</copyright>
     <license>GNU General Public License version 2</license>
     <authorEmail>joomla@db8.nl</authorEmail>
     <authorUrl>https://db8.nl</authorUrl>
@@ -22,74 +21,29 @@
         <fields name="params">
             <fieldset name="basic">
 
-                <field
-                        name="colors"
-                        type="subform"
-                        label="MOD_DB8COLORS_COLORS"
-                        description="MOD_DB8COLORS_COLORS_DESC"
-                        layout="joomla.form.field.subform.repeatable-table"
-                        multiple="true"
-                        min="1"
-                        max="10">
+                <field name="colors" type="subform" label="MOD_DB8COLORS_COLORS" description="MOD_DB8COLORS_COLORS_DESC" layout="joomla.form.field.subform.repeatable-table" multiple="true" min="1" max="10">
 
                     <form>
-                        <field
-                                name="name"
-                                type="text"
-                                label="MOD_DB8COLORS_COLOR_NAME"
-                                description="MOD_DB8COLORS_COLOR_NAME_DESC"/>
-                        <field
-                                name="value"
-                                type="color"
-                                label="MOD_DB8COLORS_COLOR_VALUE"
-                                description="MOD_DB8COLORS_COLOR_VALUE_DESC"/>
+                        <field name="name" type="text" label="MOD_DB8COLORS_COLOR_NAME" description="MOD_DB8COLORS_COLOR_NAME_DESC" />
+                        <field name="value" type="color" label="MOD_DB8COLORS_COLOR_VALUE" description="MOD_DB8COLORS_COLOR_VALUE_DESC" />
                     </form>
                 </field>
             </fieldset>
 
             <fieldset name="advanced">
-                <field
-                        name="layout"
-                        type="modulelayout"
-                        label="JFIELD_ALT_LAYOUT_LABEL"
-                        class="form-select"
-                        validate="moduleLayout"
-                />
+                <field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" class="form-select" validate="moduleLayout" />
 
-                <field
-                        name="moduleclass_sfx"
-                        type="textarea"
-                        label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
-                        rows="3"
-                        validate="CssIdentifier"
-                />
+                <field name="moduleclass_sfx" type="textarea" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" rows="3" validate="CssIdentifier" />
 
-                <field
-                        name="cache"
-                        type="list"
-                        label="COM_MODULES_FIELD_CACHING_LABEL"
-                        default="1"
-                        filter="integer"
-                        validate="options"
-                >
+                <field name="cache" type="list" label="COM_MODULES_FIELD_CACHING_LABEL" default="1" filter="integer" validate="options">
                     <option value="1">JGLOBAL_USE_GLOBAL</option>
                     <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
                 </field>
 
-                <field
-                        name="cache_time"
-                        type="number"
-                        label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
-                        default="900"
-                        filter="integer"
-                />
+                <field name="cache_time" type="number" label="COM_MODULES_FIELD_CACHE_TIME_LABEL" default="900" filter="integer" />
 
-                <field
-                        name="cachemode"
-                        type="hidden"
-                        default="static"
-                >
-                    <option value="static"></option>
+                <field name="cachemode" type="hidden" default="static">
+                    <option value="static" />
                 </field>
             </fieldset>
 
