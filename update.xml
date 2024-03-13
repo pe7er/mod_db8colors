@@ -10,7 +10,7 @@
         <downloads>
             <downloadurl type="full" format="zip">https://github.com/pe7er/mod_db8colors/releases/download/1.0.1/mod_db8colors-1.0.1.zip</downloadurl>
         </downloads>
-        <sha512>8a691a97eeba17135e9fcccc3e59a0ecf68da04ccf6240c56d7e4cbdd9c56d23fb21c5b53ed0e26909e0267b7dc5a63ed4bf6a1245a61e9a4c23cda073f072b5</sha512>
+        <sha512>9555ce81bae87f3656187e9d3badb7d84fb7a0767034c9570b195fa54cc0284b8536aed2f40d0f0facf716d4f00c84f148b590235f4b66a49b0921aec5e773b6</sha512>
         <tags>
             <tag>stable</tag>
         </tags>
