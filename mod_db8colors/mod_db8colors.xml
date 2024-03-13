@@ -2,12 +2,12 @@
 <extension type="module" client="administrator" method="upgrade">
     <name>mod_db8colors</name>
     <author>Peter Martin</author>
-    <creationDate>March 2024</creationDate>
-    <copyright>Copyright (C) 2015-2024 by Peter Martin. All rights reserved.</copyright>
+    <creationDate>{{date}}</creationDate>
+    <version>{{version}}</version>
+    <copyright>Copyright (C) 2005-{{year}} by Peter Martin. All rights reserved.</copyright>
     <license>GNU General Public License version 2</license>
     <authorEmail>joomla@db8.nl</authorEmail>
     <authorUrl>https://db8.nl</authorUrl>
-    <version>1.0.0</version>
     <description>MOD_DB8COLORS_XML_DESCRIPTION</description>
 
     <namespace path="src">Joomla\Module\Db8colors</namespace>

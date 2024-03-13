@@ -1,0 +1,57 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Load variables from .env
+        run: |
+          while IFS='=' read -r key value; do
+            echo "$key=$value" >> $GITHUB_ENV;
+          done < .env
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Update module's XML manifest
+        run: |
+          python update_manifest.py ${{ env.EXTENSION }} ${{ env.MANIFEST }} ${{ env.VERSION }}
+
+      - name: Zip the module folder
+        run: |
+          zip -r ${{ env.EXTENSION }}-${{ env.VERSION }}.zip ${{ env.EXTENSION }}/
+
+      - name: Compute SHA512 checksum
+        run: |
+          sha512sum ${{ env.EXTENSION }}-${{ env.VERSION }}.zip > ${{ env.EXTENSION }}-${{ env.VERSION }}.zip.sha512
+          SHA512=$(cat ${{ env.EXTENSION }}-${{ env.VERSION }}.zip.sha512 | cut -d' ' -f1)
+          echo "SHA512=$SHA512" >> $GITHUB_ENV
+
+      - name: Upload ZIP as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.EXTENSION }}-${{ env.VERSION }}.zip
+          path: ${{ env.EXTENSION }}-${{ env.VERSION }}.zip
+
+      - name: Update update.xml
+        run: |
+          DOWNLOAD_URL="https://github.com/pe7er/${{ env.EXTENSION }}/releases/download/${{ env.VERSION }}/${{ env.EXTENSION }}-${{ env.VERSION }}.zip"
+          python update_update_xml.py ${{ env.VERSION }} $DOWNLOAD_URL ${{ env.SHA512 }}
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add update.xml ${{ env.EXTENSION }}/${{ env.MANIFEST }}
+          git commit -m "Update version to ${{ env.VERSION }}"
+          git push
