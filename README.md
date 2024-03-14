@@ -11,7 +11,7 @@ Joomla 4/5 admin module to document the used colors
 - Spanish (es-ES)
 
 ## Installation
-Install like any other Joomla 4 or Joomla 4 module.
+Install like any other Joomla 4 or Joomla 5 module.
 
 ## Configuration
 After installation, configure the module via: 
