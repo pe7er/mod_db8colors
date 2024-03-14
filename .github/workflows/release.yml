@@ -47,7 +47,7 @@ jobs:
 
       - name: Update module's XML manifest
         if: env.version_changed == 'true'
-        run: python update_manifest.py ${{ env.EXTENSION }}/${{ env.MANIFEST }} ${{ env.VERSION }}
+        run: python .github/scripts/update_manifest.py ${{ env.EXTENSION }}/${{ env.MANIFEST }} ${{ env.VERSION }}
 
       - name: Zip the module folder
         if: env.version_changed == 'true'
@@ -90,7 +90,7 @@ jobs:
         if: env.version_changed == 'true'
         run: |
           DOWNLOAD_URL="https://github.com/pe7er/${{ env.EXTENSION }}/releases/download/${{ env.VERSION }}/${{ env.EXTENSION }}-${{ env.VERSION }}.zip"
-          python update_update_xml.py ${{ env.VERSION }} $DOWNLOAD_URL ${{ env.SHA512 }}
+          python .github/scripts/update_update_xml.py ${{ env.VERSION }} $DOWNLOAD_URL ${{ env.SHA512 }}
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add update.xml ${{ env.EXTENSION }}/${{ env.MANIFEST }}
