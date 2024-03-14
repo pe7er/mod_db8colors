@@ -30,11 +30,11 @@ jobs:
         working-directory: ../${{ env.EXTENSION }}
 
       # Only create a new package when .env has new version number
-      - name: Check if versions match
+      - name: Check for version changes
         run: |
           if [ "${{ env.VERSION }}" == "$VERSION_IN_XML" ]; then
-            echo "Version ${{ env.VERSION }} matches the version in update.xml ($VERSION_IN_XML). Stopping workflow."
-            exit 1
+            echo "No changes found, no new package created. Version ${{ env.VERSION }} matches the version in update.xml ($VERSION_IN_XML)."
+            exit 0
           fi
 
       - name: Debug environment variables
