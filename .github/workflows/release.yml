@@ -16,15 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install xmllint
-        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
-
-      - name: List files for debugging
-        run: |
-          ls -la ../mod_db8colors
-          echo "Listing parent directory:"
-          ls -la ..
-
       - name: Load variables from .env
         run: |
           while IFS='=' read -r key value; do
@@ -33,7 +24,7 @@ jobs:
 
       - name: Extract version from update.xml
         run: |
-          VERSION_IN_XML=$(xmllint --xpath "string(//version)" update.xml)
+          VERSION_IN_XML=$(grep '<version>' update.xml | sed -n 's/.*<version>\(.*\)<\/version>.*/\1/p')
           echo "VERSION_IN_XML=$VERSION_IN_XML" >> $GITHUB_ENV
         working-directory: ../${{ env.EXTENSION }}
 
