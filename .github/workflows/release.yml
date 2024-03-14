@@ -31,7 +31,7 @@ jobs:
       - name: Extract version from update.xml
         id: xml_version
         run: |
-          VERSION_IN_XML=$(xmllint --xpath "string(//version)" ${{ env.EXTENSION }}/update.xml)
+          VERSION_IN_XML=$(xmllint --xpath "string(//version)" ../${{ env.EXTENSION }}/update.xml)
           echo "VERSION_IN_XML=$VERSION_IN_XML" >> $GITHUB_ENV
 
       # Only create a new package when .env has new version number
