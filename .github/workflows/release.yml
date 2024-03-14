@@ -29,41 +29,42 @@ jobs:
           echo "VERSION_IN_XML=$VERSION_IN_XML" >> $GITHUB_ENV
         working-directory: ../${{ env.EXTENSION }}
 
-      # Only create a new package when .env has new version number
       - name: Check for version changes
+        id: version_check
         run: |
           if [ "${{ env.VERSION }}" == "$VERSION_IN_XML" ]; then
             echo "No changes found, no new package created. Version ${{ env.VERSION }} matches the version in update.xml ($VERSION_IN_XML)."
-            exit 0
+            echo "version_changed=false" >> $GITHUB_ENV
+          else
+            echo "version_changed=true" >> $GITHUB_ENV
           fi
-
-      - name: Debug environment variables
-        run: |
-          echo "VERSION=${{ env.VERSION }}"
-          echo "EXTENSION=${{ env.EXTENSION }}"
-          echo "MANIFEST=${{ env.MANIFEST }}"
-
+    
       - name: Set up Python
+        if: env.version_changed == 'true'
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
       - name: Update module's XML manifest
+        if: env.version_changed == 'true'
         run: python update_manifest.py ${{ env.EXTENSION }}/${{ env.MANIFEST }} ${{ env.VERSION }}
 
       - name: Zip the module folder
+        if: env.version_changed == 'true'
         run: |
           cd ${{ env.EXTENSION }}
           zip -r ../${{ env.EXTENSION }}-${{ env.VERSION }}.zip .
           cd ..
 
       - name: Compute SHA512 checksum
+        if: env.version_changed == 'true'
         run: |
           sha512sum ${{ env.EXTENSION }}-${{ env.VERSION }}.zip > ${{ env.EXTENSION }}-${{ env.VERSION }}.zip.sha512
           SHA512=$(cat ${{ env.EXTENSION }}-${{ env.VERSION }}.zip.sha512 | cut -d' ' -f1)
           echo "SHA512=$SHA512" >> $GITHUB_ENV
 
       - name: Create Release
+        if: env.version_changed == 'true'
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -75,6 +76,7 @@ jobs:
           prerelease: false
 
       - name: Upload Release Asset
+        if: env.version_changed == 'true'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -85,6 +87,7 @@ jobs:
           asset_content_type: application/zip
 
       - name: Update update.xml and commit changes
+        if: env.version_changed == 'true'
         run: |
           DOWNLOAD_URL="https://github.com/pe7er/${{ env.EXTENSION }}/releases/download/${{ env.VERSION }}/${{ env.EXTENSION }}-${{ env.VERSION }}.zip"
           python update_update_xml.py ${{ env.VERSION }} $DOWNLOAD_URL ${{ env.SHA512 }}
