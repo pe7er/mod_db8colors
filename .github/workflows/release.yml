@@ -28,6 +28,7 @@ jobs:
           VERSION_IN_XML=$(grep '<version>' ${{ env.EXTENSION }}/update.xml | sed -e 's/<[^>]*>//g' | xargs)
           echo "VERSION_IN_XML=$VERSION_IN_XML" >> $GITHUB_ENV
 
+      # Only create a new package when .env has new version number
       - name: Check if versions match
         run: |
           if [ "${{ env.VERSION }}" == "$VERSION_IN_XML" ]; then
@@ -41,7 +42,6 @@ jobs:
           echo "EXTENSION=${{ env.EXTENSION }}"
           echo "MANIFEST=${{ env.MANIFEST }}"
 
-      # If versions do not match, the following steps will execute
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
