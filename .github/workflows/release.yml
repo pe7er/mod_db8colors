@@ -25,6 +25,7 @@ jobs:
       - name: Extract version from update.xml
         run: |
           VERSION_IN_XML=$(grep '<version>' update.xml | sed -n 's/.*<version>\(.*\)<\/version>.*/\1/p')
+          echo "debug: VERSION_IN_XML=$VERSION_IN_XML"
           echo "VERSION_IN_XML=$VERSION_IN_XML" >> $GITHUB_ENV
         working-directory: ../${{ env.EXTENSION }}
 
