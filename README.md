@@ -9,6 +9,7 @@ Joomla 4/5 admin module to document the used colors
 - Italian (it-IT)
 - Portuguese (pt-PT)
 - Spanish (es-ES)
+- Turkish (tr-TR) (thanks @joomlaphp)
 
 ## Installation
 Install like any other Joomla 4 or Joomla 5 module.
