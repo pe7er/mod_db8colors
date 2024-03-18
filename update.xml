@@ -5,12 +5,12 @@
         <element>mod_db8colors</element>
         <type>module</type>
         <client>administrator</client>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
         <infourl title="mod_db8colors">https://github.com/pe7er/mod_db8colors</infourl>
         <downloads>
-            <downloadurl type="full" format="zip">https://github.com/pe7er/mod_db8colors/releases/download/1.0.4/mod_db8colors-1.0.4.zip</downloadurl>
+            <downloadurl type="full" format="zip">https://github.com/pe7er/mod_db8colors/releases/download/1.0.5/mod_db8colors-1.0.5.zip</downloadurl>
         </downloads>
-        <sha512>7e36f483a4fec707a29ab362a687bd5e48300785963d5937aa54dd2fd457d131150ea380d353e7bcfc7b9556c364fe32b9916045f261977ca27f5c41d3470831</sha512>
+        <sha512>8f3c50f9e24d3b261d07f5ad5afe4444aa042bf822e57765f4211e873dd75800b8fbb62e69dd9acdd4fea859a971cd19d1f5feba64d70ac88364050ef93380a3</sha512>
         <tags>
             <tag>stable</tag>
         </tags>
