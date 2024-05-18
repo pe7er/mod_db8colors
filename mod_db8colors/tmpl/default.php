@@ -27,7 +27,7 @@ $colors = $params->get('colors', []);
     }
 
     tr:nth-child(even) {
-        background-color: #f2f2f2;
+        background-color: var(--template-quickicon-bg, #f2f2f2);
     }
 </style>
 
