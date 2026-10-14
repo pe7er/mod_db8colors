@@ -1,19 +1,20 @@
 <extension type="module" client="administrator" method="upgrade">
     <name>mod_db8colors</name>
     <author>Peter Martin</author>
-    <creationDate>2024-03-18</creationDate>
-    <version>1.0.5</version>
-    <copyright>Copyright (C) 2005-2024 by Peter Martin. All rights reserved.</copyright>
+    <creationDate>2026-10-14</creationDate>
+    <version>1.1.0</version>
+    <copyright>Copyright (C) 2015-2026 by Peter Martin. All rights reserved.</copyright>
     <license>GNU General Public License version 2</license>
     <authorEmail>joomla@db8.nl</authorEmail>
     <authorUrl>https://db8.nl</authorUrl>
     <description>MOD_DB8COLORS_XML_DESCRIPTION</description>
 
-    <namespace path="src">Joomla\Module\Db8colors</namespace>
+    <namespace path="src">Db8\Module\Db8colors</namespace>
 
     <files>
-        <filename module="mod_db8colors">mod_db8colors.php</filename>
+        <folder module="mod_db8colors">services</folder>
         <folder>language</folder>
+        <folder>src</folder>
         <folder>tmpl</folder>
     </files>
 
@@ -51,9 +52,7 @@
     </config>
 
     <updateservers>
-        <server type="extension" name="mod_db8colors">
-            https://raw.githubusercontent.com/pe7er/mod_db8colors/master/update.xml
-        </server>
+        <server type="extension" name="mod_db8colors">https://extensions.db8.nl/updates/db8colors</server>
     </updateservers>
 
 </extension>

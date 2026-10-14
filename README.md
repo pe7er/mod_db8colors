@@ -1,5 +1,5 @@
 # mod_db8colors
-Joomla 4/5 admin module to document the used colors
+Joomla 5 and Joomla 6 admin module to document the used colors
 
 ## Available Languages
 - Dutch (nl-NL)
@@ -12,7 +12,7 @@ Joomla 4/5 admin module to document the used colors
 - Turkish (tr-TR) (thanks @joomlaphp)
 
 ## Installation
-Install like any other Joomla 4 or Joomla 5 module.
+Install like any other Joomla module. Updates come from https://extensions.db8.nl.
 
 ## Configuration
 After installation, configure the module via: 
@@ -31,3 +31,5 @@ In the dashboard of the back-end the module should display the colors that you a
 
 ![mod_db8colors_result](https://github.com/pe7er/mod_db8colors/assets/1217850/4847a21c-34cf-4c95-b5b2-74fe753568ed)
 
+## Changelog
+See [CHANGELOG.md](CHANGELOG.md) for release notes.
