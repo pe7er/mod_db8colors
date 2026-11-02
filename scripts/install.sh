@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Build the module and install it into a Joomla site with Joomla's CLI.
+# Build the extension and install it into a Joomla site with Joomla's CLI.
 #
 # Usage: ./scripts/install.sh /path/to/joomla
 #

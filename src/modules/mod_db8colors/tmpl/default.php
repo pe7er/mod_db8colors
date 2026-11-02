@@ -1,9 +1,12 @@
 <?php
 /**
- * @package     mod_db8colors
- * @author      Peter Martin, https://db8.nl
- * @copyright   Copyright (C) 2015-2026 Peter Martin. All rights reserved.
- * @license     GNU General Public License version 2 or later.
+ * @package     Joomla.Administrator
+ * @subpackage  mod_db8colors
+ *
+ * @author      Peter Martin <joomla@db8.nl>
+ * @copyright   (C) 2015 - 2026 Peter Martin
+ * @link        https://extensions.db8.nl
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 \defined('_JEXEC') or die;

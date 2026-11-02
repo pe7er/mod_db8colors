@@ -47,14 +47,14 @@ jobs:
 
       - name: Update module's XML manifest
         if: env.version_changed == 'true'
-        run: python .github/scripts/update_manifest.py ${{ env.EXTENSION }}/${{ env.MANIFEST }} ${{ env.VERSION }}
+        run: python .github/scripts/update_manifest.py ${{ env.SOURCE_DIR }}/${{ env.MANIFEST }} ${{ env.VERSION }}
 
       - name: Zip the module folder
         if: env.version_changed == 'true'
         run: |
-          cd ${{ env.EXTENSION }}
-          zip -r ../${{ env.EXTENSION }}-${{ env.VERSION }}.zip .
-          cd ..
+          cd ${{ env.SOURCE_DIR }}
+          zip -r ${{ github.workspace }}/${{ env.EXTENSION }}-${{ env.VERSION }}.zip .
+          cd ${{ github.workspace }}
 
       - name: Compute SHA512 checksum
         if: env.version_changed == 'true'

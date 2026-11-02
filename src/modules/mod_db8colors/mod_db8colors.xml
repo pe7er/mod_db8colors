@@ -2,13 +2,12 @@
     <name>mod_db8colors</name>
     <author>Peter Martin</author>
     <creationDate>2026-10-14</creationDate>
-    <version>1.1.0</version>
-    <copyright>Copyright (C) 2015-2026 by Peter Martin. All rights reserved.</copyright>
-    <license>GNU General Public License version 2</license>
+    <copyright>(C) 2015 - 2026 Peter Martin</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <authorEmail>joomla@db8.nl</authorEmail>
     <authorUrl>https://db8.nl</authorUrl>
+    <version>1.1.0</version>
     <description>MOD_DB8COLORS_XML_DESCRIPTION</description>
-
     <namespace path="src">Db8\Module\Db8colors</namespace>
 
     <files>
@@ -50,6 +49,8 @@
 
         </fields>
     </config>
+
+    <changelogurl>https://extensions.db8.nl/updates/db8colors?changelog=1</changelogurl>
 
     <updateservers>
         <server type="extension" name="mod_db8colors">https://extensions.db8.nl/updates/db8colors</server>
