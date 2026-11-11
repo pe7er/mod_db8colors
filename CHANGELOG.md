@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - The module's styles no longer change every other table on the same page.
+- Screen readers: the table has a hidden caption with the module title, and the swatch column (headed "Swatch" instead of "SVG") is skipped, as the hex value next to it already gives the colour.
 
 ## [1.0.5] - 2024-03-18
 

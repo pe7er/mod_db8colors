@@ -14,14 +14,17 @@
 use Joomla\CMS\Language\Text;
 
 /** @var \Joomla\Registry\Registry $params */
+/** @var \stdClass $module */
 $colors = (array) $params->get('colors', []);
 ?>
 <table class="table table-striped mb-0">
+    <caption class="visually-hidden"><?php echo htmlspecialchars($module->title, ENT_QUOTES, 'UTF-8'); ?></caption>
     <thead>
         <tr>
             <th scope="col"><?php echo Text::_('MOD_DB8COLORS_COLOR'); ?></th>
             <th scope="col"><?php echo Text::_('MOD_DB8COLORS_HEX_VALUE'); ?></th>
-            <th scope="col"><?php echo Text::_('MOD_DB8COLORS_SVG'); ?></th>
+            <?php // The swatch repeats the hex value visually; screen readers skip the column. ?>
+            <th scope="col" aria-hidden="true"><?php echo Text::_('MOD_DB8COLORS_SWATCH'); ?></th>
         </tr>
     </thead>
     <tbody>
@@ -30,8 +33,8 @@ $colors = (array) $params->get('colors', []);
             <tr>
                 <td><?php echo htmlspecialchars((string) ($color->name ?? ''), ENT_COMPAT, 'UTF-8'); ?></td>
                 <td><?php echo $value; ?></td>
-                <td>
-                    <svg width="40" height="15" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <td aria-hidden="true">
+                    <svg width="40" height="15" xmlns="http://www.w3.org/2000/svg" focusable="false">
                         <rect width="40" height="15" fill="<?php echo $value; ?>" stroke="currentColor" stroke-width="1"/>
                     </svg>
                 </td>
